@@ -38,11 +38,14 @@ class Snow extends Sprite{
 	constructor(x = 1, y = 4, vel = 40){
 		super(SNOW_IMG, x, y, 10, 10);
 		this.colisor = new SimpleRectCollisor(x, y, 10, 10);
+		this.colisor.tag = "snow";
+		
 		this.fallVelocity = vel;
 		
 		this.swingDirection = 0;
 		this.timeToSwing = 1;
 		this.currentTime = 2;
+		
 	}
 
 	fall(){
@@ -71,8 +74,9 @@ class Snow extends Sprite{
 		this.fall();
 		this.swing();
 		
-		if (this.colisor.isInCollision)
-			new Destroyer(0.5, this); // destroy with delay to any object that is in collision with it will have time process it own isInCollision.
+		for (let i in this.colisor.collision)
+			if (this.colisor.collision[i].tag !== "snow")
+				new Destroyer(0.5, this); // destroy with delay to any object that is in collision with it will have time process it own isInCollision.	
 		
 		if (this.y > Ramu.height)
 			this.destroy();
@@ -211,12 +215,14 @@ class SnowController extends GameObj{
 		SnowController.Wind = 20;
 		
 		new Snow(Math.random() * Ramu.width, -10, 200);
-		
-		this.timeToChangeWeather = 5;
+	}
+	
+	invokeSnowHell(){
+		this.timeToChangeWeather = 20;
 		this.currentTimeWeather = 0;
+		this.currentItensity = -1;
 	}
 }
-
 
 
 class Game extends GameObj{
@@ -243,9 +249,8 @@ class Game extends GameObj{
 			this.particle.init();
 			
 			new Destroyer(1, this.cursedSnowmanSprite);
-			
-			this.controller.currentItensity = -1;
-			this.controller.setSnowhell();
+						
+			this.controller.invokeSnowHell();
 		}
 	}
 	
