@@ -23,14 +23,6 @@ class Gift extends SimpleRectCollisor {
 		return gift;
 	}
 
-	start(){
-		// this.animation = 0.0;
-		this.count = 3;
-		this.originX = this.x;
-		this.originY = this.y;
-	}
-
-	
 	update(){
 		let vel = 20* Ramu.time.delta;
 		
