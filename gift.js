@@ -13,9 +13,10 @@ Rect.prototype.copy = function(){
 }
 
 class Gift extends SimpleRectCollisor {
-	static instance(x, y, color){
+	static instance(x, y, color, toLeft){
 		let gift = new Gift(x, y, 9, 12);
 		// Creating the property
+		gift.toLeft = toLeft;
 		gift.sprite = new Spritesheet(SANTA_IMG, GIFTS[color], x, y, 9, 12);
 		gift.sprite.drawPriority = 3;
 		
@@ -24,13 +25,17 @@ class Gift extends SimpleRectCollisor {
 	}
 
 	update(){
-		let vel = 20* Ramu.time.delta;
-		
-		this.x += vel;
-		this.sprite.x = this.x;
+		let vel = 20 * Ramu.time.delta;
 		
 		this.y += vel + 0.5;
 		this.sprite.y = this.y;
+		
+		if (this.toLeft)
+			vel = -vel;
+		
+		this.x += vel/2;
+		this.sprite.x = this.x;
+		
 				
 		if (Ramu.Utils.isOutOfCanvas(this))
 			this.destroy();
@@ -86,18 +91,26 @@ class Santa extends SpritesheetAnimation {
 		this.remainedColors.splice(index, 1);
 	}
 	
+	throwGift(left){
+		Gift.instance(this.x + 95, this.y + 11, this.currentColor, left);
+		this.currentTimeToThrow = 0;
+		this.setRandColor();
+	}
+	
 	input(){
 		this.currentTimeToThrow += Ramu.time.delta;
-		if (keyCode.space in Ramu.lastKeysPressed && this.currentTimeToThrow >= this.timeToThrow){
-			Gift.instance(this.x + 95, this.y + 11, this.currentColor);
-			this.currentTimeToThrow = 0;
-			this.setRandColor();
+		if (this.currentTimeToThrow >= this.timeToThrow){
+			if (keyCode.q in Ramu.lastKeysPressed)
+				this.throwGift(true);
+			
+			if (keyCode.e in Ramu.lastKeysPressed)
+				this.throwGift(false);
 		}
-		
+
 		let pos = 100 * Ramu.time.delta;
 		
 		if (keyCode.a in Ramu.pressedKeys || keyCode.left_arrow in Ramu.pressedKeys){
-			if (this.x - pos >= -this.width / 2) // otherwise the chimneys coners will be inaccessible
+			if (this.x - pos >= 0) 
 				this.x -= pos;
 		} 
 		
