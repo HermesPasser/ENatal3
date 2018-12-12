@@ -1,19 +1,5 @@
 "use strict";
 
-/*
-	Sistema de Neve by Hermes Passer with Ramu 0.7b
-
-	[x] - O sistema deve fazer cair flocos neve no mapa escolhido;
-	
-	[x] - O sistema deve ser configurável para que:
-	
-		[x]	1) A neve pode começar (e parar) em um momento aleatório;
-
-		[x]	2) A neve pode começar (e parar) ao interagir com um evento;
-
-		[x]	3) A intensidade dos flocos de neve seja configurada (pouco, médio ou muitos).
-*/
-
 Panorama.prototype.setImage = function(img){
 	if (!(img instanceof Image)) throw Ramu.Utils.CustomTypeError(img, Image);
 
@@ -199,8 +185,7 @@ class SnowController extends GameObj{
 	}
 }
 
-
-class Game extends GameObj{
+class SnowGame extends GameObj{
 	start(){
 		this.createGound();
 		this.controller = new SnowController();
@@ -234,8 +219,3 @@ class Game extends GameObj{
 		this.groundleft_col = new SimpleRectCollisor(-50,450,250,50);
 	}
 }
-
-
-var game = new Game();
-Ramu.init(500, 500);
-// Ramu.debugMode = true;
