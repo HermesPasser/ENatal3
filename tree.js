@@ -18,7 +18,7 @@ const IMG_RECT = {
 const POINTS = { // Define your custom points here
 	1: 1,
 	5: 2,
-	10: 20
+	9: 20
 };
 
 class Game extends GameObj {
