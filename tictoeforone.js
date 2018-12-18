@@ -152,7 +152,7 @@ class Game extends GameObj{
 				return;
 			
 			// try to draw
-			if (this.aiCheckEmpty(pos[0], pos[1], pos[2], this.player) && this.hardMode)
+			if (this.hardMode && this.aiCheckEmpty(pos[0], pos[1], pos[2], this.player))
 				return;
 		}
 		
