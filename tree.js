@@ -51,7 +51,6 @@ class Game extends GameObj {
 	updateUI() {
 		if (this.secsLeft <= 0.000 && this.started){
 			this.secsLeft = this.secs;
-			Ramu.inLoop = false;
 		}
 		
 		this.secsLeft -= Ramu.time.delta;
@@ -86,10 +85,10 @@ class Game extends GameObj {
 		let len = this.items.length;
 		this.currentNumItems = Math.floor(Math.random() * len);
 		
-		for (let i = 1; i <= num; ++i)
+		for (let i = 1; i <= this.currentNumItems; ++i)
 			this.items[i].canDraw = true;
 				
-		if (num === 0)
+		if (this.currentNumItems === 0)
 			this.showItems();
 	}
 	
