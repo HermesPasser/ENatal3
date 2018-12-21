@@ -87,11 +87,11 @@ class Game extends GameObj{
 	}
 
 	setObjs() {
-		let dificulty = 10;
+		let difficulty = 10;
 		this.baseFish = [
-			new Fish(new Rect(-40, -40, 40, 21), new Rect(0, 0, 42, 21), 1, 4 * dificulty),
-			new Fish(new Rect(-40, -40, 44, 18), new Rect(0, 21, 44, 18), 5, 8 * dificulty),
-			new Fish(new Rect(-40, -40, 37, 24), new Rect(0, 39, 37, 24), 10, 12 * dificulty)	
+			new Fish(new Rect(-40, -40, 40, 21), new Rect(0, 0, 42, 21), 1, 4 * difficulty),
+			new Fish(new Rect(-40, -40, 44, 18), new Rect(0, 21, 44, 18), 5, 8 * difficulty),
+			new Fish(new Rect(-40, -40, 37, 24), new Rect(0, 39, 37, 24), 10, 12 * difficulty)	
 		];
 		this.screenArea = new Clickable(0, 0, Ramu.width, Ramu.height);
 		this.screenArea.onClick = function() {
