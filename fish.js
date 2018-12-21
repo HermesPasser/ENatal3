@@ -1,18 +1,4 @@
 "use strict";
-/*
-
-x O jogador precisa pescar diversos peixes para atingir uma quantidade x de pontos pré-estabelecida
-
-x Cada peixe deve ter um valor específico, sendo os mais valiosos mais difíceis de serem pegos;
-
-x A quantidade de tentativas ser limitadas em cada novo estágio;
-
-x O sistema deve ser configurável para que:
-
- x) A quantidade de peixes disponíveis seja customizável.
- x) A dificuldade para pescar cada peixe seja ajustável.
- 
-*/
 
 Boolean.rand = function() {
 	return Boolean(Math.floor(Math.random() * 2));
@@ -101,10 +87,11 @@ class Game extends GameObj{
 	}
 
 	setObjs() {
+		let dificulty = 10;
 		this.baseFish = [
-			new Fish(new Rect(-40, -40, 40, 21), new Rect(0, 0, 42, 21), 1, 40),
-			new Fish(new Rect(-40, -40, 44, 18), new Rect(0, 21, 44, 18), 5, 80),
-			new Fish(new Rect(-40, -40, 37, 24), new Rect(0, 39, 37, 24), 10, 120)	
+			new Fish(new Rect(-40, -40, 40, 21), new Rect(0, 0, 42, 21), 1, 4 * dificulty),
+			new Fish(new Rect(-40, -40, 44, 18), new Rect(0, 21, 44, 18), 5, 8 * dificulty),
+			new Fish(new Rect(-40, -40, 37, 24), new Rect(0, 39, 37, 24), 10, 12 * dificulty)	
 		];
 		this.screenArea = new Clickable(0, 0, Ramu.width, Ramu.height);
 		this.screenArea.onClick = function() {
