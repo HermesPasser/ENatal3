@@ -121,7 +121,7 @@ class Game extends GameObj{
 		}
 	}
 	
-	populate(level) {
+	populate() {
 		for (let i = 0; i < this.fishLimit; ++i){
 			const index = Number.rand(this.baseFish.length);
 			let f = this.baseFish[index].copy();
