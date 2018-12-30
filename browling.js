@@ -1,4 +1,4 @@
-const BOWLING_IMG = Ramu.Utils.getImage('img/bowling.png');
+const BOWLING_IMG = Ramu.Utils.getImage('img/browling.png');
 const PIN_Y = 20;
 
 class Ball extends SpritesheetAnimation {
