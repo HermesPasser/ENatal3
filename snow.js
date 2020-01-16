@@ -43,7 +43,7 @@ class Snow extends Sprite{
 		this.currentTime += Ramu.time.delta;
 		if (this.currentTime >= this.timeToSwing){
 			this.swingDirection = Math.trunc(Math.random() * 100);
-			this.currenTime = 0;
+			this.currentTime = 0;
 		}
 		
 		let dir = SnowController.Wind * Ramu.time.delta;
@@ -51,8 +51,8 @@ class Snow extends Sprite{
 			this.x -= dir;
 			this.colisor.x -= dir;
 		} else {
-			this.x -= dir;
-			this.colisor.x -= dir;
+			this.x += dir;
+			this.colisor.x += dir;
 		}
 	}
 	
